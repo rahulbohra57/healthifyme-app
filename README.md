@@ -51,7 +51,7 @@ Healthify is built using Generative AI (Google Gemini 2.5) and provides:
 - Google Gemini-2.5-flash
 - LangChain (langchain_google_genai)
 
-- Core Tools
+### Core Tools:
   - Python
   - dotenv
   - requests
