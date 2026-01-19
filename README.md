@@ -60,8 +60,7 @@ Healthify is built using Generative AI (Google Gemini 2.5) and provides:
   - LLM orchestration
   - Context-aware response generation
 
-📈 Business Impact & Industry Relevance
-
+### Business Impact & Industry Relevance
 - Healthify demonstrates how GenAI can transform preventive healthcare by:
 - Reducing reliance on traditional consultations
 - Enabling self-guided health decisions
