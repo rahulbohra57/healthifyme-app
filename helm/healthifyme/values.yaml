@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: rahulbohra57/healthifyme-app
-  tag: 087ba18
+  tag: f12695a
   pullPolicy: IfNotPresent
 
 service:
