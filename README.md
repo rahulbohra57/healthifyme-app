@@ -1,70 +1,91 @@
 App Link: https://healthify-me-app.streamlit.app/
 
-## HealthifyMe – Your AI Wellness Assistant
+# HealthifyMe – GitOps-based Kubernetes Deployment 🚀
+
+HealthifyMe is a containerized AI-powered wellness application deployed on Kubernetes using a modern **GitOps CI/CD pipeline**.  
+The project demonstrates best practices using **Docker, GitHub Actions, Helm, and Argo CD** for automated builds, declarative deployments, and continuous delivery.
+
 ---
-An AI-powered virtual wellness coach delivering personalized fitness, nutrition, mental health, and lifestyle guidance using Google Gemini and Streamlit.
 
-### Problem Statement:
+## 🏗️ Architecture Overview
 
-In today’s high-stress lifestyle, individuals struggle to access personalized, affordable, and reliable wellness guidance.
+The deployment follows a GitOps model where **GitHub is the single source of truth**, and Argo CD continuously reconciles the desired state into Kubernetes.
 
-Most solutions today are:
-- Generic fitness blogs
-- Expensive dietitian consultations
-- Inaccurate online symptom searches
+**Pipeline Flow:**
 
-There is no accessible, real-time AI system that provides custom wellness recommendations based on personal health data such as age, weight, goals, lifestyle, and medical conditions.
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8819c097-2613-4415-93db-51f746eabe50" />
 
-### Business Objective:
+---
 
-Healthify aims to democratize preventive healthcare by providing:
-- Personalized diet and fitness plans
-- Mental well-being support
-- Symptom-based guidance
-- Conversational AI experience
-- Voice and text interaction
+## 🧰 Tech Stack
 
-The goal is to empower individuals to take control of their wellness without dependency on costly consultations.
+- **Application**: Python (Streamlit)
+- **Containerization**: Docker
+- **CI**: GitHub Actions
+- **Image Registry**: Docker Hub
+- **CD / GitOps**: Argo CD
+- **Packaging**: Helm
+- **Orchestration**: Kubernetes (Minikube)
+- **Secrets Management**: Kubernetes Secrets
 
-### Target Users:
-- Working professionals with limited time
-- Individuals managing chronic conditions
-- Fitness beginners and enthusiasts
-- Corporates focusing on employee wellness
-- Health & lifestyle startups
 
-### Solution Overview:
+---
 
-Healthify is built using Generative AI (Google Gemini 2.5) and provides:
+## 🔄 CI Pipeline (GitHub Actions)
 
-- 🏋️ Fitness Recommendations – goal-based workouts
-- 🥗 Diet Planning – personalized nutrition advice
-- 🧘 Mental Wellness Support – stress and sleep guidance
-- 💬 LLM-Powered Chat Assistant – human-like interactions
-- 🌐 Web-Based Access – no mobile app required
+Triggered on every push to the `main` branch.
 
-### Tech Stack:
+### CI Responsibilities:
+- Checkout source code
+- Build Docker image
+- Push image to Docker Hub
 
-- Frontend
-- Streamlit (Python)
-- Backend & AI
-- Google Gemini-2.5-flash
-- LangChain (langchain_google_genai)
+> CI **does not deploy** to Kubernetes. Deployment is handled via GitOps using Argo CD.
 
-### Core Tools:
-  - Python
-  - dotenv
-  - requests
-  - AI Skills Demonstrated
-  - Prompt engineering
-  - LLM orchestration
-  - Context-aware response generation
+---
 
-### Business Impact & Industry Relevance:
-- Healthify demonstrates how GenAI can transform preventive healthcare by:
-- Reducing reliance on traditional consultations
-- Enabling self-guided health decisions
-- Offering scalable wellness solutions for:
-  - Healthtech startups
-  - Insurance companies
-  - Corporate wellness platforms
+## 🚢 CD Pipeline (Argo CD – GitOps)
+
+Argo CD continuously:
+- Monitors the GitHub repository
+- Compares Git state with Kubernetes state
+- Automatically syncs changes using Helm charts
+
+### Key Features:
+- Automated sync
+- Drift detection & self-healing
+- Declarative rollback via Git
+
+---
+
+## ⚙️ Helm Configuration
+
+Image and runtime configuration are managed via `values.yaml`:
+
+image:
+  repository: rahulbohra57/healthifyme-app
+  tag: v1
+
+service:
+  type: NodePort
+  port: 8501
+
+Updating values.yaml triggers an automatic deployment via Argo CD.
+
+--
+
+🔁 Rollbacks & Reliability
+
+- Rollbacks are performed by updating Git (values.yaml)
+- Argo CD reconciles the rollback automatically
+- No manual intervention required in Kubernetes
+
+--
+
+🎯 Key Learnings
+
+- Git as the single source of truth
+- Safe deployments with GitOps
+- Declarative rollback strategy
+- CI/CD separation of concerns
+- Real-world Kubernetes troubleshooting
