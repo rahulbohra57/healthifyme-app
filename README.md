@@ -13,7 +13,7 @@ The deployment follows a GitOps model where **GitHub is the single source of tru
 
 **Pipeline Flow:**
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8819c097-2613-4415-93db-51f746eabe50" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/14d3cb83-19bf-48dc-8073-140fb132d4d8" />
 
 ---
 
